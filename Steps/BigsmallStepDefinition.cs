@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 using System.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
+using Serilog;
 
 namespace SmallBig.Steps
 {
     [Binding]
     public sealed class BigsmallStepDefinition
     {
-
+        
         private readonly ScenarioContext _scenarioContext;
         IWebDriver driver;
         
@@ -19,6 +21,7 @@ namespace SmallBig.Steps
         {
             _scenarioContext = scenarioContext;
             BrowserFactory browser = new BrowserFactory("chrome");
+            Log.Debug("Navigated to the Browser");
         }
 
         [Given(@"I Intialize the browser")]
@@ -46,6 +49,7 @@ namespace SmallBig.Steps
         {
             string title=driver.Title;
             Console.WriteLine(title);
+            Log.Debug("Captured the Title of the Page");
         }
 
         [Given(@"I click on signup")]
@@ -73,6 +77,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.IsRobotCheckopened();
+            Log.Debug("Entered to Sign in page");
         }
 
         [Then(@"It should display Incorrect email or password.")]
@@ -80,6 +85,8 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.CheckUnSuccessfullLogin();
+            Log.Debug("Entered to Sign in page with invalid credentials");
+
         }
 
         [Given(@"I click on search bar")]
@@ -108,6 +115,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.GetPrice();
+            Log.Debug("Captured the Price tag for the Website");
         }
 
         [Given(@"I click on the gift card")]
@@ -129,6 +137,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.checkAvailibity();
+            Log.Debug("Checked COD availability");
         }
 
         [Given(@"I click on rakhi")]
@@ -143,6 +152,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.checkRakhiPageIsDisplayed();
+            Log.Debug("Naviagated to the Rakhi Page");
         }
 
         [Given(@"I hover on gifts dropdowns")]
@@ -164,6 +174,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.AssertGivenTitle(title);
+            Log.Debug("Asserted with Guys Gift Page");
         }
 
         [Given(@"I click on top 50")]
@@ -178,6 +189,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.AssertDisplayed();
+            Log.Debug("Naviagated to Rakhi page from the footer");
         }
 
         [Then(@"I get description")]
@@ -185,6 +197,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.GetDescription();
+            Log.Debug("Captured the description of the searched product");
         }
 
         [When(@"I click on wishlist")]
@@ -192,6 +205,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.AddToWishlist();
+            
         }
 
         [Then(@"I navigate to wishlist and get the title of the product in wishlist")]
@@ -199,23 +213,7 @@ namespace SmallBig.Steps
         {
             Pagefactory POM = new Pagefactory(driver);
             POM.CheckWishList();
+            Log.Debug("Item added to the Wishlist");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
