@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 using Serilog;
+using SmallBig.POM;
 
 namespace SmallBig.Steps
 {
@@ -55,36 +56,36 @@ namespace SmallBig.Steps
         [Given(@"I click on signup")]
         public void GivenIClickOnSignup()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.ClickSignIn();
+            LoginPOM login = new LoginPOM(driver);
+            login.ClickSignIn();
         }
         [Given(@"enter (.*) and (.*)")]
         public void GivenEnterSumanthsumuGmail_ComAnd(string email,string password)
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.CreateLogin(email, password);
+            LoginPOM login = new LoginPOM(driver);
+            login.CreateLogin(email, password);
         }
 
         [When(@"click on sign in button")]
         public void WhenClickOnSignInButton()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.ClickSignInbutton();
+            LoginPOM login = new LoginPOM(driver);
+            login.ClickSignInbutton();
         }
 
         [Then(@"It should check for robot or man")]
         public void ThenItShouldCheckForRobotOrMan()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.IsRobotCheckopened();
+            LoginPOM login = new LoginPOM(driver);
+            login.IsRobotCheckopened();
             Log.Debug("Entered to Sign in page");
         }
 
         [Then(@"It should display Incorrect email or password.")]
         public void ThenItShouldDisplayIncorrectEmailOrPassword_()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.CheckUnSuccessfullLogin();
+            LoginPOM login = new LoginPOM(driver);
+            login.CheckUnSuccessfullLogin();
             Log.Debug("Entered to Sign in page with invalid credentials");
 
         }
@@ -92,127 +93,126 @@ namespace SmallBig.Steps
         [Given(@"I click on search bar")]
         public void GivenIClickOnSearchBar()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.ClickSearchBar();
+            PricePOM price = new PricePOM(driver);
+            price.ClickSearchBar();
         }
 
         [Given(@"search (.*) in the search bar")]
         public void GivenSearchHarryPotterInTheSearchBar(string text)
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.searchItem(text);
+            PricePOM price = new PricePOM(driver);
+            price.searchItem(text);
         }
         
         [When(@"I click the first product")]
         public void WhenIClickTheFirstProduct()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.SelectFirstItem();
+            PricePOM price = new PricePOM(driver);
+            price.SelectFirstItem();
         }
 
         [Then(@"I should get the price of that product")]
         public void ThenIShouldGetThePriceOfThatProduct()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.GetPrice();
+            PricePOM price = new PricePOM(driver);
+            price.GetPrice();
             Log.Debug("Captured the Price tag for the Website");
         }
 
         [Given(@"I click on the gift card")]
         public void GivenIClickOnTheGiftCard()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.SelectGiftCard();
+            GiftCod giftCod = new GiftCod(driver);
+            giftCod.SelectGiftCard();
         }
 
         [When(@"I enter pincode (.*)")]
         public void WhenIEnterPincode(string pincode)
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.EnterPin(pincode);
+            GiftCod giftCod = new GiftCod(driver);
+            giftCod.EnterPin(pincode);
         }
 
         [Then(@"check the COD availibility")]
         public void ThenCheckTheAvailibility()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.checkAvailibity();
+            GiftCod giftCod = new GiftCod(driver);
+            giftCod.checkAvailibity();
             Log.Debug("Checked COD availability");
         }
 
         [Given(@"I click on rakhi")]
         public void GivenIClickOnRakhi()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.ClickRakhi();
+            ScrollDown scrollDown = new ScrollDown(driver);
+            scrollDown.ClickRakhi();
         }
 
         [Then(@"It should navigate to the rakhi page")]
         public void ThenItShouldNavigateToTheRakhiPage()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.checkRakhiPageIsDisplayed();
+            ScrollDown scrollDown = new ScrollDown(driver);
+            scrollDown.checkRakhiPageIsDisplayed();
             Log.Debug("Naviagated to the Rakhi Page");
         }
 
         [Given(@"I hover on gifts dropdowns")]
         public void GivenIHoverOnGiftsDropdowns()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.HoverOnGifts();
+            Dropdown dropdown = new Dropdown(driver);
+            dropdown.HoverOnGifts();
         }
 
         [Given(@"select gift for guys")]
         public void GivenSelectGiftForGuys()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.SelectGuysGift();
+            Dropdown dropdown = new Dropdown(driver);
+            dropdown.SelectGuysGift();
         }
 
         [Then(@"It should display (.*)")]
         public void ThenItShouldDisplayBestGiftsForGuysMenInIndia(string title)
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.AssertGivenTitle(title);
+            Dropdown dropdown = new Dropdown(driver);
+            dropdown.AssertGivenTitle(title);
             Log.Debug("Asserted with Guys Gift Page");
         }
 
         [Given(@"I click on top 50")]
         public void GivenIClickOnTop()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.NavigateToTop50();
+            Top50 top50 = new Top50(driver);
+            top50.NavigateToTop50();
         }
 
         [Then(@"it should display top 50 items")]
         public void ThenItShouldDisplayTopItems()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.AssertDisplayed();
+            Top50 top50 = new Top50(driver);
+            top50.AssertDisplayed();
             Log.Debug("Naviagated to Rakhi page from the footer");
         }
 
         [Then(@"I get description")]
         public void ThenIGetDescription()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.GetDescription();
+            Description description = new Description(driver);
+            description.GetDescription();
             Log.Debug("Captured the description of the searched product");
         }
 
         [When(@"I click on wishlist")]
         public void WhenIClickOnWishlist()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.AddToWishlist();
-            
+            WishList wishList = new WishList(driver);
+            wishList.AddToWishlist(); 
         }
 
         [Then(@"I navigate to wishlist and get the title of the product in wishlist")]
         public void ThenINavigateToWishlistAndGetTheTitleOfTheProductInWishlist()
         {
-            Pagefactory POM = new Pagefactory(driver);
-            POM.CheckWishList();
+            WishList wishList = new WishList(driver);
+            wishList.CheckWishList();
             Log.Debug("Item added to the Wishlist");
         }
     }

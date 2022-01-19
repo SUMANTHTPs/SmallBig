@@ -33,6 +33,10 @@ namespace SmallBig.Hooks
             + Path.DirectorySeparatorChar + "Logs"
             + Path.DirectorySeparatorChar + "Logs_" + DateTime.Now.ToString("ddMMyyyy HHmmss");
 
+        static string ScreenShotPath = System.IO.Directory.GetParent(@"../../../").FullName
+            + Path.DirectorySeparatorChar + "Screenshots"
+            + Path.DirectorySeparatorChar + "ss_" + DateTime.Now.ToString("ddMMyyyy HHmmss")+".png";
+
 
         [BeforeTestRun]
 
@@ -103,7 +107,7 @@ namespace SmallBig.Hooks
             Thread.Sleep(2000);
             string dateString = DateTime.Now.ToString("MM-dd-yyyy hh-mm-ss");
             Console.WriteLine(dateString);
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(dateString + " test " + (count++) + ".png", ScreenshotImageFormat.Png);
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(dateString+" Test"+(count++)+".png", ScreenshotImageFormat.Png);
 
             driver.Quit();
             Log.Information("The above scenario sxecuted successfully");
